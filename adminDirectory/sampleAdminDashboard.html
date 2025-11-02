@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CampusCare – Admin Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #ffd369;
+      font-weight: 600;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+
+    .menu {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .menu a {
+      color: #ddd;
+      text-decoration: none;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+
+    .menu a.active,
+    .menu a:hover {
+      color: #ffd369;
+    }
+
+    .container {
+      flex: 1;
+      padding: 2.5rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      color: #ffd369;
+      margin-bottom: 1.5rem;
+      font-size: 1.6rem;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    /* Updated grid layout for 2 cards per row */
+    .admin-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+
+    .admin-glass-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border-radius: 18px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 18px rgba(0, 0, 0, 0.25);
+      text-decoration: none;
+      color: #fff;
+      display: block;
+    }
+
+    .admin-glass-card:hover {
+      transform: translateY(-6px);
+      background: rgba(255, 255, 255, 0.18);
+      box-shadow: 0 0 25px rgba(255, 211, 105, 0.3);
+    }
+
+    .admin-icon {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto 1rem;
+      display: block;
+      fill: #ffd369;
+    }
+
+    .admin-glass-card h3 {
+      margin-bottom: 0.4rem;
+      font-size: 1.25rem;
+      color: #fff;
+    }
+
+    .admin-glass-card p {
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+
+    .admin-table-section {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(8px);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+      animation: fadeIn 0.8s ease-in;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      color: #fff;
+    }
+
+    thead {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    th, td {
+      padding: 0.9rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    th {
+      font-weight: 600;
+      color: #ffd369;
+    }
+
+    td select {
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      color: #000;
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    td select option {
+      color: #000;
+      background: #fff;
+      font-weight: 500;
+    }
+
+    .pill {
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-align: center;
+      display: inline-block;
+    }
+
+    .pill.yellow { background: #ffd369; color: #000; }
+    .pill.green { background: #4caf50; color: #fff; }
+    .pill.red { background: #e53935; color: #fff; }
+
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      background: rgba(255, 255, 255, 0.05);
+      color: #ccc;
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    footer a {
+      color: #ffd369;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .admin-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <a href="../sampleIndex.html" class="brand">CampusCare</a>
+      <ul class="menu">
+        <li><a href="#admin-complaints">Complaints</a></li>
+        <li><a href="./sampleAnalytics.html">Analytics</a></li>
+        <li><a href="./sampleUser.html">Users</a></li>
+        <li><a href="./sampleFeedback.html">Feedbacks</a></li>
+        <li><a href="./sampleSetting.html">Settings</a></li>
+        <li><a href="./sampleAdminLogin.html" class="logout">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="admin-panels" aria-labelledby="admin-panels-title">
+      <h2 id="admin-panels-title">Overview</h2>
+      <div class="admin-cards">
+
+        <!-- All Complaints -->
+        <a href="#pagelinking" class="admin-glass-card">
+          <svg class="admin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 8h14v-2H7v2zm0-4h14v-2H7v2zm0-6v2h14V7H7z"/>
+          </svg>
+          <h3>All Complaints</h3>
+          <p>View and manage all complaints.</p>
+        </a>
+
+        <!-- Analytics -->
+        <a href="#pagelinking" class="admin-glass-card">
+          <svg class="admin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M3 17h2v-7H3v7zm4 0h2V7H7v10zm4 0h2v-4h-2v4zm4 0h2V4h-2v13zm4 0h2v-9h-2v9z"/>
+          </svg>
+          <h3>Analytics</h3>
+          <p>Monitor KPIs and trends.</p>
+        </a>
+
+        <!-- Assign Staff -->
+        <a href="./sampleAssignAuth.html" class="admin-glass-card">
+          <svg class="admin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 12c2.7 0 4.9-2.2 4.9-4.9S14.7 2.2 12 2.2 7.1 4.4 7.1 7.1 9.3 12 12 12zm0 2c-2.7 0-8 1.3-8 4v1.8h16V18c0-2.7-5.3-4-8-4z"/>
+          </svg>
+          <h3>Assign Staff</h3>
+          <p>Dispatch and track staff workload.</p>
+        </a>
+
+        <!-- Manage Users -->
+        <a href="#pagelinking" class="admin-glass-card">
+          <svg class="admin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M16 11c1.7 0 3.1-1.4 3.1-3.1S17.7 4.8 16 4.8s-3.1 1.4-3.1 3.1S14.3 11 16 11zm-8 0c1.7 0 3.1-1.4 3.1-3.1S9.7 4.8 8 4.8 4.9 6.2 4.9 7.9 6.3 11 8 11zm0 2c-2 0-6 1-6 3v2h12v-2c0-2-4-3-6-3zm8 0c-.3 0-.7 0-1 .1 1.2.7 2 1.6 2 2.9v2h6v-2c0-2-4-3-7-3z"/>
+          </svg>
+          <h3>Manage Users</h3>
+          <p>Roles and permissions.</p>
+        </a>
+      </div>
+    </section>
+
+    <section id="admin-complaints" class="admin-table-section" aria-labelledby="table-title">
+      <h2 id="table-title">Complaint Management</h2>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Complaint ID</th>
+              <th>Student Name</th>
+              <th>Category</th>
+              <th>Status</th>
+              <th>Assigned Staff</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>#CC-1024</td>
+              <td>Alex Johnson</td>
+              <td>Electrical</td>
+              <td><span class="pill yellow">In Process</span></td>
+              <td>R. Singh</td>
+              <td>
+                <select>
+                  <option>View Complaint</option>
+                  <option>Assign to Staff</option>
+                  <option>Mark as Resolved</option>
+                  <option>Reopen Complaint</option>
+                  <option>Delete Complaint</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>#CC-1025</td>
+              <td>Maria Lopez</td>
+              <td>Plumbing</td>
+              <td><span class="pill green">Resolved</span></td>
+              <td>H. Kumar</td>
+              <td>
+                <select>
+                  <option>View Details</option>
+                  <option>Reopen Complaint</option>
+                  <option>Archive</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>#CC-1026</td>
+              <td>Sam Okoro</td>
+              <td>Cleaning</td>
+              <td><span class="pill red">Pending</span></td>
+              <td>—</td>
+              <td>
+                <select>
+                  <option>View Complaint</option>
+                  <option>Assign to Staff</option>
+                  <option>Delete Complaint</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 · <a href="../sampleIndex.html">CampusCare</a>
+  </footer>
+</body>
+</html>

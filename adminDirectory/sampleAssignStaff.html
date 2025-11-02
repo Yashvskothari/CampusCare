@@ -1,0 +1,257 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusCare – Assign Staff</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Navbar */
+    header {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      color: #ffd369;
+      font-weight: 600;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+
+    .menu {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .menu a {
+      color: #ddd;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .menu a:hover,
+    .menu a.active {
+      color: #ffd369;
+    }
+
+    /* Main Content */
+    .container {
+      flex: 1;
+      padding: 2rem 3rem;
+      max-width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h2 {
+      color: #ffd369;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-size: 1.9rem;
+      letter-spacing: 0.5px;
+    }
+
+    .assign-box {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 2.5rem 3rem;
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 0.8s ease-in;
+      width: 85%;
+      max-width: 1100px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.6rem;
+      color: #ffd369;
+      font-weight: 500;
+      font-size: 1rem;
+    }
+
+    select, input, textarea {
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      margin-bottom: 1.2rem;
+      outline: none;
+      font-size: 0.95rem;
+      transition: 0.3s;
+      appearance: none;
+    }
+
+    select option {
+      color: #000;
+      background-color: #fff;
+      font-weight: 500;
+    }
+
+    select:focus,
+    input:focus,
+    textarea:focus {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    ::placeholder {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .form-btn {
+      display: flex;
+      justify-content: center;
+      margin-top: 1.2rem;
+    }
+
+    button {
+      background: #ffd369;
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      padding: 1rem 3rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 1rem;
+    }
+
+    button:hover {
+      background: #ffe299;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      background: rgba(255, 255, 255, 0.05);
+      color: #ccc;
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    footer a {
+      color: #ffd369;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .assign-box {
+        width: 95%;
+        padding: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <a href="../sampleIndex.html" class="brand">CampusCare</a>
+      <ul class="menu">
+       <li><a href="sampleAdminDashboard.html">Home</a></li>
+        <li><a href="sampleAdminCompaints.html">Complaints</a></li>
+        <li><a href="./sampleUser.html">Users</a></li>
+        <li><a href="./sampleFeedback.html">Feedbacks</a></li>
+        <li><a href="./sampleSetting.html">Settings</a></li>
+        <li><a href="./sampleAdminLogin.html" class="logout">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h2>Staff Assignment Panel</h2>
+    <div class="assign-box">
+      <form>
+        <label for="complaintId">Complaint ID</label>
+        <input type="text" id="complaintId" placeholder="Enter complaint ID">
+
+        <label for="category">Complaint Category</label>
+        <select id="category">
+          <option>Electrical</option>
+          <option>Plumbing</option>
+          <option>Cleaning</option>
+          <option>Benches and Seats</option>
+          <option>Air Conditioning</option>
+          <option>Carpentry</option>
+          <option>Painting</option>
+          <option>Lighting</option>
+          <option>Network / Internet</option>
+          <option>Other</option>
+        </select>
+
+        <label for="staffName">Assign To (Staff Name)</label>
+        <select id="staffName">
+          <option>R. Singh</option>
+          <option>H. Kumar</option>
+          <option>A. Patel</option>
+          <option>M. Sharma</option>
+          <option>K. Verma</option>
+          <option>L. Mehta</option>
+          <option>P. Gupta</option>
+          <option>T. Iqbal</option>
+          <option>V. Chatterjee</option>
+          <option>N. D'Souza</option>
+        </select>
+
+        <label for="remarks">Remarks</label>
+        <textarea id="remarks" rows="4" placeholder="Add any notes or instructions here"></textarea>
+
+        <div class="form-btn">
+          <button type="submit">Assign Staff</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 · <a href="../sampleIndex.html">CampusCare</a>
+  </footer>
+</body>
+</html>
+

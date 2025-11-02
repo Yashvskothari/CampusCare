@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CampusCare – My Complaints</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Base */
+    body {
+      margin: 0;
+      font-family: "Outfit", sans-serif;
+      background: linear-gradient(135deg, #0d1b2a, #1b263b, #415a77, #778da9);
+      background-size: 400% 400%;
+      animation: gradientShift 12s ease infinite;
+      color: #f5f5f5;
+      min-height: 100vh;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(17, 32, 65, 0.9);
+      backdrop-filter: blur(10px);
+      color: white;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .brand-logo {
+      font-size: 1.8rem;
+      color: #a5d8ff;
+    }
+
+    .brand-text {
+      font-weight: 600;
+      font-size: 1.5rem;
+      color: white;
+      margin-left: 0.5rem;
+      letter-spacing: 0.5px;
+    }
+
+    .menu {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .menu a {
+      color: #f1f1f1;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .menu a:hover,
+    .menu a.active {
+      color: #a5d8ff;
+    }
+
+    .logout {
+      background: #e63946;
+      padding: 0.45rem 1rem;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: background 0.3s ease;
+    }
+
+    .logout:hover {
+      background: #c62836;
+    }
+
+    /* Page Layout */
+    .dashboard-page {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+
+    h2 {
+      text-align: center;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      color: #a5d8ff;
+      font-size: 1.8rem;
+    }
+
+    /* Complaint Cards */
+    .complaint-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .complaint-card {
+      background: rgba(255, 255, 255, 0.07);
+      border-radius: 14px;
+      padding: 1.8rem 2rem;
+      box-shadow: 0 0 20px rgba(165, 216, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      transition: 0.3s ease;
+    }
+
+    .complaint-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 25px rgba(165, 216, 255, 0.3);
+    }
+
+    .complaint-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .complaint-type {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: #a5d8ff;
+    }
+
+    .status {
+      padding: 0.3rem 0.8rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .status.pending { background: rgba(255, 196, 0, 0.2); color: #ffd166; }
+    .status.resolved { background: rgba(0, 255, 157, 0.2); color: #06d6a0; }
+    .status.processing { background: rgba(165, 216, 255, 0.2); color: #a5d8ff; }
+
+    .complaint-details p {
+      margin: 0.4rem 0;
+      color: #e0e0e0;
+      font-size: 0.95rem;
+    }
+
+    .complaint-details strong {
+      color: #a5d8ff;
+    }
+
+    .history {
+      margin-top: 1.2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 1rem;
+    }
+
+    .history-title {
+      font-weight: 600;
+      color: #a5d8ff;
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .timeline {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .timeline li {
+      position: relative;
+      padding-left: 1.4rem;
+      margin-bottom: 0.6rem;
+      color: #d9d9d9;
+      font-size: 0.9rem;
+    }
+
+    .timeline li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #a5d8ff;
+      font-size: 1.2rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(17, 32, 65, 0.9);
+      color: white;
+      margin-top: 4rem;
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-link {
+      color: #a5d8ff;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="navbar nav-student">
+      <a href="../sampleIndex.html" class="brand">
+        <span class="brand-logo"><i data-lucide="sparkles"></i></span>
+        <span class="brand-text">CampusCare</span>
+      </a>
+      <ul class="menu">
+        <li><a href="./sampleAdminDashboard.html" class="active">Home</a></li>
+        <li><a href="./sampleStatus.html">Status</a></li>
+        <li><a href="./sampleMyFeedbacks.html">Feedback</a></li>
+        <li><a href="./sampleMyprofile.html">Profile</a></li>
+        <li><a href="./sampleStudentLogin.html" class="logout">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="dashboard-page">
+    <h2>My Complaints</h2>
+
+    <div class="complaint-list">
+      <!-- Complaint 1 -->
+      <div class="complaint-card">
+        <div class="complaint-header">
+          <div class="complaint-type">
+            <i data-lucide="zap"></i>
+            Electrical Issue
+          </div>
+          <span class="status resolved">Resolved</span>
+        </div>
+        <div class="complaint-details">
+          <p><strong>Date Filed:</strong> 12 Oct 2024</p>
+          <p><strong>Location:</strong> Hostel Block A, Room 206</p>
+          <p><strong>Description:</strong> Tube light and ceiling fan not working since morning.</p>
+          <p><strong>Handled By:</strong> R. Singh (Electrical Department)</p>
+        </div>
+        <div class="history">
+          <div class="history-title">Complaint History</div>
+          <ul class="timeline">
+            <li>12 Oct 2024 – Complaint filed by student.</li>
+            <li>13 Oct 2024 – Assigned to R. Singh.</li>
+            <li>13 Oct 2024 – Issue resolved and verified by warden.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Complaint 2 -->
+      <div class="complaint-card">
+        <div class="complaint-header">
+          <div class="complaint-type">
+            <i data-lucide="droplet"></i>
+            Plumbing Issue
+          </div>
+          <span class="status processing">In Process</span>
+        </div>
+        <div class="complaint-details">
+          <p><strong>Date Filed:</strong> 28 Oct 2024</p>
+          <p><strong>Location:</strong> Boys’ Hostel Washroom (Ground Floor)</p>
+          <p><strong>Description:</strong> Water leakage from the sink tap, causing puddles on the floor.</p>
+          <p><strong>Handled By:</strong> A. Patel (Plumbing Department)</p>
+        </div>
+        <div class="history">
+          <div class="history-title">Complaint History</div>
+          <ul class="timeline">
+            <li>28 Oct 2024 – Complaint registered.</li>
+            <li>29 Oct 2024 – Assigned to A. Patel for inspection.</li>
+            <li>30 Oct 2024 – Replacement parts ordered; work ongoing.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Complaint 3 -->
+      <div class="complaint-card">
+        <div class="complaint-header">
+          <div class="complaint-type">
+            <i data-lucide="broom"></i>
+            Cleaning Issue
+          </div>
+          <span class="status resolved">Resolved</span>
+        </div>
+        <div class="complaint-details">
+          <p><strong>Date Filed:</strong> 5 Sept 2024</p>
+          <p><strong>Location:</strong> Academic Block C, Corridor</p>
+          <p><strong>Description:</strong> Dust and garbage not cleaned for two days.</p>
+          <p><strong>Handled By:</strong> M. Sharma (Cleaning Department)</p>
+        </div>
+        <div class="history">
+          <div class="history-title">Complaint History</div>
+          <ul class="timeline">
+            <li>5 Sept 2024 – Complaint lodged.</li>
+            <li>6 Sept 2024 – Assigned to M. Sharma.</li>
+            <li>6 Sept 2024 – Cleaning completed and verified.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Complaint 4 -->
+      <div class="complaint-card">
+        <div class="complaint-header">
+          <div class="complaint-type">
+            <i data-lucide="info"></i>
+            General Issue
+          </div>
+          <span class="status pending">Pending</span>
+        </div>
+        <div class="complaint-details">
+          <p><strong>Date Filed:</strong> 1 Nov 2024</p>
+          <p><strong>Location:</strong> Library Reading Room</p>
+          <p><strong>Description:</strong> Air conditioning not functioning, room gets very hot after noon.</p>
+          <p><strong>Handled By:</strong> Not yet assigned</p>
+        </div>
+        <div class="history">
+          <div class="history-title">Complaint History</div>
+          <ul class="timeline">
+            <li>1 Nov 2024 – Complaint submitted.</li>
+            <li>Awaiting assignment to maintenance team.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 · <a href="../sampleIndex.html" class="footer-link">CampusCare</a>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

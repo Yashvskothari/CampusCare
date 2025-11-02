@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CampusCare – Admin Login</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/a2d9d6a1a8.js" crossorigin="anonymous"></script>
+
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+      background-size: 400% 400%;
+      animation: gradientShift 12s ease infinite;
+      color: #fff;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* --- Header (Navigation Bar) --- */
+    .site-header {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .navbar {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffd369;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .brand i {
+      font-size: 1.4rem;
+    }
+
+    .menu {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .menu a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #eee;
+      transition: color 0.3s;
+    }
+
+    .menu a:hover,
+    .menu a.active {
+      color: #ffd369;
+    }
+
+    /* --- Login Container --- */
+    .login-page {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 3rem 1rem;
+    }
+
+    .login-container {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 40px 50px;
+      border-radius: 16px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(8px);
+      max-width: 400px;
+      width: 90%;
+      animation: fadeInUp 0.9s ease-out;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .login-container:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 35px rgba(255, 211, 105, 0.25);
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #ffd369;
+    }
+
+    h3 {
+      font-weight: 400;
+      color: #ddd;
+      margin-bottom: 25px;
+    }
+
+    /* --- Form Styles --- */
+    .admin-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .admin-field {
+      position: relative;
+    }
+
+    .admin-field input {
+      width: 100%;
+      padding: 12px 45px 12px 45px;
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      border-radius: 8px;
+      outline: none;
+      color: #fff;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .admin-field input::placeholder {
+      color: #f3f3f3;
+      opacity: 0.9;
+    }
+
+    .admin-field input:focus {
+      background: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 0 8px rgba(255, 211, 105, 0.5);
+    }
+
+    .admin-field .icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.1rem;
+      color: #ffd369;
+      opacity: 0.85;
+    }
+
+    /* --- Button --- */
+    .btn {
+      background: linear-gradient(90deg, #ffd369, #ffb347);
+      border: none;
+      border-radius: 8px;
+      padding: 12px;
+      color: #000;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 12px rgba(255, 211, 105, 0.6);
+    }
+
+    /* --- Footer --- */
+    .footer {
+      text-align: center;
+      padding: 1rem 0;
+      color: #ccc;
+      font-size: 0.9rem;
+      background: rgba(0, 0, 0, 0.25);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer a {
+      color: #ffd369;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .footer a:hover {
+      color: #fff;
+    }
+
+    @media (max-width: 480px) {
+      .navbar {
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+      .login-container {
+        padding: 30px 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Navigation -->
+  <header class="site-header">
+    <nav class="navbar">
+      <a href="../sampleIndex.html" class="brand" aria-label="CampusCare Home">
+        <i class="fas fa-graduation-cap"></i>
+        <span>CampusCare</span>
+      </a>
+      <ul class="menu">
+        <li><a href="../sampleIndex.html">Home</a></li>
+        <li><a href="../sampleAbout.html">About & Contact us</a></li>
+        <li><a href="../sampleContact.html">About & Contact us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Login Section -->
+  <main class="login-page">
+    <div class="login-container">
+      <h3>CampusCare Admin Portal</h3>
+      <h1>Admin Login</h1>
+      <form class="admin-form" action="sampleAdminDashboard.html" method="get">
+        <label class="admin-field">
+          <span class="icon"><i class="fas fa-envelope"></i></span>
+          <input type="email" name="email" placeholder="Email address" required />
+        </label>
+        <label class="admin-field">
+          <span class="icon"><i class="fas fa-lock"></i></span>
+          <input type="password" name="password" placeholder="Password" required />
+        </label>
+        <button type="submit" class="btn">Login</button>
+      </form>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    © 2025 · <a href="../sampleIndex.html">CampusCare</a>
+  </footer>
+
+</body>
+</html>
+

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CampusCare – Feedbacks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #ffd369;
+      font-weight: 600;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+
+    .menu {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .menu a {
+      color: #ddd;
+      text-decoration: none;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+
+    .menu a.active,
+    .menu a:hover {
+      color: #ffd369;
+    }
+
+    main {
+      flex: 1;
+      padding: 2.5rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      color: #ffd369;
+      margin-bottom: 2rem;
+      font-size: 1.8rem;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .feedback-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .feedback-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 0 18px rgba(0, 0, 0, 0.25);
+      transition: all 0.3s ease;
+      animation: fadeIn 0.6s ease-in;
+    }
+
+    .feedback-card:hover {
+      transform: translateY(-6px);
+      background: rgba(255, 255, 255, 0.18);
+      box-shadow: 0 0 25px rgba(255, 211, 105, 0.3);
+    }
+
+    .feedback-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .student-id {
+      font-weight: 600;
+      color: #ffd369;
+    }
+
+    .sentiment {
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-transform: capitalize;
+    }
+
+    .positive {
+      background: #4caf50;
+      color: #fff;
+    }
+
+    .neutral {
+      background: #ffd369;
+      color: #000;
+    }
+
+    .negative {
+      background: #e53935;
+      color: #fff;
+    }
+
+    .feedback-text {
+      color: #ddd;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      background: rgba(255, 255, 255, 0.05);
+      color: #ccc;
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    footer a {
+      color: #ffd369;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <a href="../sampleIndex.html" class="brand">CampusCare</a>
+      <ul class="menu">
+          <li><a href="sampleAdminDashboard.html">Home</a></li>
+        <li><a href="sampleAdminCompaints.html">Complaints</a></li>
+        <li><a href="./sampleUser.html">Users</a></li>
+        <li><a href="./sampleSetting.html">Settings</a></li>
+        <li><a href="./sampleAdminLogin.html" class="logout">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Student Feedbacks</h2>
+    <div class="feedback-container">
+      <div class="feedback-card">
+        <div class="feedback-header">
+          <span class="student-id">#STU101</span>
+          <span class="sentiment positive">positive</span>
+        </div>
+        <p class="feedback-text">The hostel maintenance response time has improved a lot! Really appreciate the quick action this month.</p>
+      </div>
+
+      <div class="feedback-card">
+        <div class="feedback-header">
+          <span class="student-id">#STU102</span>
+          <span class="sentiment neutral">neutral</span>
+        </div>
+        <p class="feedback-text">The cafeteria food is okay, but sometimes the cleanliness needs more attention during lunch hours.</p>
+      </div>
+
+      <div class="feedback-card">
+        <div class="feedback-header">
+          <span class="student-id">#STU103</span>
+          <span class="sentiment negative">negative</span>
+        </div>
+        <p class="feedback-text">Complaint raised last week about water leakage is still pending. Please assign someone urgently.</p>
+      </div>
+
+      <div class="feedback-card">
+        <div class="feedback-header">
+          <span class="student-id">#STU104</span>
+          <span class="sentiment positive">positive</span>
+        </div>
+        <p class="feedback-text">Really happy with the new online complaint system. It’s simple and saves so much time!</p>
+      </div>
+
+      <div class="feedback-card">
+        <div class="feedback-header">
+          <span class="student-id">#STU105</span>
+          <span class="sentiment negative">negative</span>
+        </div>
+        <p class="feedback-text">Wi-Fi connectivity is weak in Block B, especially during evenings. Kindly look into it.</p>
+      </div>
+
+      <div class="feedback-card">
+        <div class="feedback-header">
+          <span class="student-id">#STU106</span>
+          <span class="sentiment neutral">neutral</span>
+        </div>
+        <p class="feedback-text">Classroom ventilation could be better. Air feels quite stuffy in afternoon lectures.</p>
+      </div>
+
+      <div class="feedback-card">
+        <div class="feedback-header">
+          <span class="student-id">#STU107</span>
+          <span class="sentiment positive">positive</span>
+        </div>
+        <p class="feedback-text">Security staff is polite and cooperative. Overall environment feels very safe.</p>
+      </div>
+
+      <div class="feedback-card">
+        <div class="feedback-header">
+          <span class="student-id">#STU108</span>
+          <span class="sentiment positive">positive</span>
+        </div>
+        <p class="feedback-text">Library facilities are excellent and the new seating area is very comfortable for group study.</p>
+      </div>
+
+      <div class="feedback-card">
+        <div class="feedback-header">
+          <span class="student-id">#STU109</span>
+          <span class="sentiment negative">negative</span>
+        </div>
+        <p class="feedback-text">Canteen prices have increased suddenly. Food quality doesn’t match the new pricing.</p>
+      </div>
+
+      <div class="feedback-card">
+        <div class="feedback-header">
+          <span class="student-id">#STU110</span>
+          <span class="sentiment neutral">neutral</span>
+        </div>
+        <p class="feedback-text">The admin support is fine, but sometimes responses to queries are delayed.</p>
+      </div>
+
+      <div class="feedback-card">
+        <div class="feedback-header">
+          <span class="student-id">#STU111</span>
+          <span class="sentiment positive">positive</span>
+        </div>
+        <p class="feedback-text">Loved the cleanliness drive organized last week. Campus looks fresh and vibrant now!</p>
+      </div>
+
+      <div class="feedback-card">
+        <div class="feedback-header">
+          <span class="student-id">#STU112</span>
+          <span class="sentiment negative">negative</span>
+        </div>
+        <p class="feedback-text">Power cuts during evening self-study hours are becoming frequent. Please ensure stable supply.</p>
+      </div>
+
+      <div class="feedback-card">
+        <div class="feedback-header">
+          <span class="student-id">#STU113</span>
+          <span class="sentiment positive">positive</span>
+        </div>
+        <p class="feedback-text">The maintenance team did a great job fixing classroom lights the same day I reported it.</p>
+      </div>
+
+      <div class="feedback-card">
+        <div class="feedback-header">
+          <span class="student-id">#STU114</span>
+          <span class="sentiment neutral">neutral</span>
+        </div>
+        <p class="feedback-text">Hostel curfew timings are fine, but maybe extend on weekends slightly.</p>
+      </div>
+
+      <div class="feedback-card">
+        <div class="feedback-header">
+          <span class="student-id">#STU115</span>
+          <span class="sentiment positive">positive</span>
+        </div>
+        <p class="feedback-text">Overall, CampusCare system is user-friendly and has made reporting issues really efficient.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 · <a href="../sampleIndex.html">CampusCare</a>
+  </footer>
+</body>
+</html>
+

@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CampusCare – Assign Staff Access</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Global Styles */
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      color: #fff;
+      background: linear-gradient(160deg, #0b111d, #182338, #0b111d);
+      background-size: 400% 400%;
+      animation: bgShift 10s ease infinite;
+      overflow-x: hidden;
+    }
+
+    @keyframes bgShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Navbar */
+    .nav-admin {
+      background-color: rgba(255, 255, 255, 0.08);
+      padding: 0.8rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+    }
+
+    .brand img {
+      height: 34px;
+      width: 34px;
+      border-radius: 8px;
+    }
+
+    .brand span {
+      color: #fff;
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* Menu */
+    .menu {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .menu a {
+      color: #ccc;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .menu a:hover,
+    .menu a.active {
+      color: #00c8ff;
+    }
+
+    /* Main Content */
+    .assign-shell {
+      max-width: 600px;
+      margin: 7rem auto;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 3rem 2.5rem;
+      border-radius: 1.2rem;
+      box-shadow: 0 0 40px rgba(0, 200, 255, 0.15);
+      text-align: center;
+      animation: fadeIn 1.2s ease-out;
+      backdrop-filter: blur(8px);
+    }
+
+    .assign-shell h2 {
+      font-size: 1.9rem;
+      margin-bottom: 1.3rem;
+      color: #00c8ff;
+      letter-spacing: 0.5px;
+    }
+
+    .assign-shell p {
+      color: #bbb;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    input[type="password"] {
+      width: 80%;
+      padding: 0.9rem;
+      font-size: 1rem;
+      border-radius: 0.5rem;
+      border: none;
+      outline: none;
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      margin-bottom: 1.5rem;
+      transition: background 0.3s;
+    }
+
+    input[type="password"]:focus {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    button {
+      padding: 0.8rem 2.3rem;
+      background: #00c8ff;
+      color: #000;
+      border: none;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s ease;
+      letter-spacing: 0.3px;
+    }
+
+    button:hover {
+      background: #00a6d6;
+      transform: translateY(-2px);
+      box-shadow: 0 0 15px rgba(0, 200, 255, 0.3);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      color: #aaa;
+      padding: 2rem 0;
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: 4rem;
+    }
+
+    footer a {
+      color: #00c8ff;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="nav-admin">
+    <a href="../sampleIndex.html" class="brand">
+      <img src="./logo.png" alt="CampusCare Logo">
+      <span>CampusCare</span>
+    </a>
+    <ul class="menu">
+        <li><a href="sampleAdminDashboard.html">Home</a></li>
+        <li><a href="sampleAdminCompaints.html">Complaints</a></li>
+        <li><a href="./sampleAnalytics.html">Analytics</a></li>
+        <li><a href="./sampleUser.html">Users</a></li>
+        <li><a href="./sampleFeedback.html">Feedbacks</a></li>
+        <li><a href="./sampleSetting.html">Settings</a></li>
+        <li><a href="./sampleAdminLogin.html" class="logout">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <section class="assign-shell">
+      <h2>Restricted Access – Assign Staff</h2>
+      <p>Only super admins have the privilege to manage staff assignments. Please enter your special access key to proceed.</p>
+
+      <form id="accessForm">
+        <input type="password" id="keyInput" placeholder="Enter special access key..." required>
+        <br>
+        <button type="submit">Proceed</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2025 · <a href="../sampleIndex.html">CampusCare</a>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    const form = document.getElementById('accessForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // For testing – any input redirects
+      window.location.href = "./sampleAssignStaff.html";
+    });
+  </script>
+
+</body>
+</html>
+

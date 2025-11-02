@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CampusCare – Student Dashboard</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Base */
+    body {
+      margin: 0;
+      font-family: "Outfit", sans-serif;
+      background: linear-gradient(135deg, #0d1b2a, #1b263b, #415a77, #778da9);
+      background-size: 400% 400%;
+      animation: gradientShift 12s ease infinite;
+      color: #f5f5f5;
+      min-height: 100vh;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(17, 32, 65, 0.9);
+      backdrop-filter: blur(10px);
+      color: white;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .brand-logo {
+      font-size: 1.8rem;
+      color: #a5d8ff;
+    }
+
+    .brand-text {
+      font-weight: 600;
+      font-size: 1.5rem;
+      color: white;
+      margin-left: 0.5rem;
+      letter-spacing: 0.5px;
+    }
+
+    .menu {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .menu a {
+      color: #f1f1f1;
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .menu a:hover,
+    .menu a.active {
+      color: #a5d8ff;
+    }
+
+    .logout {
+      background: #e63946;
+      padding: 0.45rem 1rem;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: background 0.3s ease;
+    }
+
+    .logout:hover {
+      background: #c62836;
+    }
+
+    /* Dashboard Layout */
+    .dashboard-page {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+
+    h2 {
+      text-align: center;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      color: #a5d8ff;
+      font-size: 1.8rem;
+    }
+
+    /* Cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      justify-content: center;
+      align-items: stretch;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 30px rgba(165, 216, 255, 0.3);
+    }
+
+    .card-icon {
+      font-size: 2.2rem;
+      color: #a5d8ff;
+      margin-bottom: 0.8rem;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: #f0f4f8;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #d9d9d9;
+      margin-bottom: 1rem;
+    }
+
+    .card-btn {
+      background: #a5d8ff;
+      color: #0d1b2a;
+      padding: 0.6rem 1.3rem;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .card-btn:hover {
+      background: #89c2d9;
+      transform: translateY(-2px);
+    }
+
+    /* Complaint Form */
+    .complaint-form {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 3rem 3.5rem;
+      margin-top: 4rem;
+      box-shadow: 0 0 25px rgba(165, 216, 255, 0.15);
+      backdrop-filter: blur(10px);
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cf-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .cf-form label {
+      display: block;
+      font-weight: 500;
+      color: #d9d9d9;
+      font-size: 1rem;
+    }
+
+    .cf-form select,
+    .cf-form input,
+    .cf-form textarea {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(0, 0, 0, 0.25);
+      color: #f1f1f1;
+      font-family: "Outfit", sans-serif;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    /* Make dropdown text black */
+    .cf-form select {
+      background: rgba(255, 255, 255, 0.9);
+      color: #000;
+    }
+
+    .cf-form select option {
+      color: #000;
+      background: #fff;
+    }
+
+    .cf-form input::placeholder,
+    .cf-form textarea::placeholder {
+      color: #bbb;
+    }
+
+    .cf-form select:focus,
+    .cf-form input:focus,
+    .cf-form textarea:focus {
+      outline: none;
+      border-color: #a5d8ff;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-glow {
+      background: #a5d8ff;
+      color: #0d1b2a;
+      border: none;
+      padding: 0.9rem 1.6rem;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      align-self: center;
+      width: 60%;
+    }
+
+    .btn-glow:hover {
+      background: #89c2d9;
+      transform: translateY(-2px);
+    }
+
+    /* Status Tracker */
+    .status-tracker {
+      margin-top: 4rem;
+      text-align: center;
+    }
+
+    .steps {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #d9d9d9;
+    }
+
+    .step.is-active {
+      color: #a5d8ff;
+    }
+
+    .dot {
+      width: 16px;
+      height: 16px;
+      background: #555;
+      border-radius: 50%;
+      margin-bottom: 0.4rem;
+      transition: background 0.3s ease;
+    }
+
+    .step.is-active .dot {
+      background: #a5d8ff;
+      box-shadow: 0 0 10px #a5d8ff;
+    }
+
+    .progress {
+      height: 6px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      margin: 0 auto;
+      max-width: 400px;
+    }
+
+    .bar {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      background: #a5d8ff;
+      width: var(--pct, 0%);
+      transition: width 0.5s ease;
+    }
+
+    /* Footer */
+    .site-footer {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(17, 32, 65, 0.9);
+      color: white;
+      margin-top: 4rem;
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-link {
+      color: #a5d8ff;
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .navbar .menu {
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .complaint-form {
+        padding: 2rem;
+      }
+
+      .btn-glow {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body class="role-student">
+  <header class="site-header">
+    <nav class="navbar nav-student">
+      <a href="../sampleIndex.html" class="brand">
+        <span class="brand-logo"><i data-lucide="sparkles"></i></span>
+        <span class="brand-text">CampusCare</span>
+      </a>
+      <ul class="menu">
+        <li><a href="./sampleMyComplaints.html">My Complaints</a></li>
+        <li><a href="./sampleStatus.html">Status</a></li>
+        <li><a href="./sampleMyFeedbacks.html">Feedback</a></li>
+        <li><a href="./sampleMyprofile.html">Profile</a></li>
+        <li><a href="./sampleStudentLogin.html" class="logout">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container dashboard-page">
+    <section class="student-cards">
+      <h2>Welcome Back</h2>
+      <div class="card-grid">
+        <article class="card">
+          <span class="card-icon"><i data-lucide="file-plus"></i></span>
+          <h3>File New Complaint</h3>
+          <p>Submit an issue with details and attachments.</p>
+          <a href="#file" class="card-btn">Open</a>
+        </article>
+        <article class="card">
+          <span class="card-icon"><i data-lucide="folder"></i></span>
+          <h3>My Complaints</h3>
+          <p>View and manage your submitted complaints.</p>
+          <a href="sampleMyComplaints.html" class="card-btn">Open</a>
+        </article>
+        <article class="card">
+          <span class="card-icon"><i data-lucide="search"></i></span>
+          <h3>Check Status</h3>
+          <p>Track your complaints in real time.</p>
+          <a href="sampleStatus.html" class="card-btn">Open</a>
+        </article>
+        <article class="card">
+          <span class="card-icon"><i data-lucide="star"></i></span>
+          <h3>Feedback</h3>
+          <p>Let us know how we can improve.</p>
+          <a href="sampltMyFeedbacks.html" class="card-btn">Open</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- File Complaint Section -->
+    <section id="file" class="complaint-form">
+      <h2>File a Complaint</h2>
+      <form class="cf-form">
+        <label>
+          <select name="type" required style="width: 739px;">
+            <option value="" disabled selected hidden>Select Type</option>
+            <option>Electrical</option>
+            <option>Plumbing</option>
+            <option>Cleaning</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label><input type="text" name="location" placeholder="Enter location" required></label>
+        <label><textarea name="description" rows="4" placeholder="Describe your issue..." required></textarea></label>
+        <label><input type="file" name="attachment" accept="image/*"></label>
+        <button type="submit" class="btn-glow">Submit Complaint</button>
+      </form>
+    </section>
+
+    <section id="status" class="status-tracker">
+      <h2>Complaint Status</h2>
+      <div class="steps">
+        <div class="step is-active"><span class="dot"></span><span>Filed</span></div>
+        <div class="step"><span class="dot"></span><span>In Process</span></div>
+        <div class="step"><span class="dot"></span><span>Resolved</span></div>
+      </div>
+      <div class="progress"><span class="bar" style="--pct:50;"></span></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">© 2025 · <a href="../sampleIndex.html" class="footer-link">CampusCare</a></div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

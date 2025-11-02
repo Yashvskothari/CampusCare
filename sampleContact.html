@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us | Campus Complaint Tracker Portal</title>
+    <style>
+      /* General Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        background: linear-gradient(135deg, #1f1c2c, #928dab);
+        color: #f5f5f5;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      header {
+        background: rgba(0, 0, 0, 0.3);
+        padding: 20px 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        backdrop-filter: blur(6px);
+      }
+      header h1 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+      }
+      nav a {
+        text-decoration: none;
+        color: #f5f5f5;
+        margin-left: 30px;
+        font-size: 1rem;
+        transition: 0.3s;
+      }
+      nav a:hover {
+        color: #ffd369;
+      }
+      .contact-section {
+        flex: 1;
+        max-width: 1000px;
+        margin: 60px auto;
+        padding: 40px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(6px);
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+      }
+      .contact-section:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+      }
+      .contact-section h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #ffd369;
+        font-size: 2rem;
+      }
+      .contact-group {
+        margin-top: 30px;
+      }
+      .contact-group h3 {
+        color: #ffd369;
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+      }
+      .contact-group p {
+        font-size: 1.05rem;
+        line-height: 1.8;
+        margin-bottom: 8px;
+        color: #eaeaea;
+      }
+      a {
+        color: #ffd369;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      footer {
+        background: rgba(0, 0, 0, 0.4);
+        text-align: center;
+        padding: 20px 0;
+        font-size: 0.9rem;
+        color: #ccc;
+        letter-spacing: 0.5px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Campus Complaint Tracker</h1>
+      <nav>
+        <a href="sampleIndex.html">Home</a> 
+        <a href="sampleAbout.html">About Us</a>
+        <a href="studentDirectory/sampleStudentLogin.html">Student Login</a>
+        <a href="adminDirectory/sampleAdminLogin.html">Admin Login</a>
+      </nav>
+    </header>
+    <section class="contact-section">
+      <h2>Contact Us</h2>
+      <p style="text-align: center; margin-bottom: 30px; font-size: 1.1rem">
+        We value your feedback, questions, and suggestions. Please reach out to
+        the appropriate contact below to get assistance with your queries
+        related to the <strong>Campus Complaint Tracker Portal</strong> or JECRC
+        University services.
+      </p>
+      <div class="contact-group">
+        <h3>Portal Management Team</h3>
+        <p>
+          <strong>Mr. Rohan Mehta</strong> – Project Coordinator<br />
+          Email:
+          <a href="mailto:rohan.mehta@campuscomplainttracker.in"
+            >rohan.mehta@campuscomplainttracker.in</a
+          ><br />
+          Phone: +91 98765 44122
+        </p>
+        <p>
+          <strong>Ms. Priya Sharma</strong> – Technical Lead (Web Operations)<br />
+          Email:
+          <a href="mailto:priya.sharma@campuscomplainttracker.in"
+            >priya.sharma@campuscomplainttracker.in</a
+          ><br />
+          Phone: +91 88554 66771
+        </p>
+        <p>
+          <strong>Mr. Aman Verma</strong> – Admin Portal Support<br />
+          Email:
+          <a href="mailto:aman.verma@campuscomplainttracker.in"
+            >aman.verma@campuscomplainttracker.in</a
+          ><br />
+          Phone: +91 88990 11223
+        </p>
+      </div>
+      <div class="contact-group">
+        <h3>Technical Support</h3>
+        <p>
+          <strong>Email:</strong>
+          <a href="mailto:support@campuscomplainttracker.in"
+            >support@campuscomplainttracker.in</a
+          >
+        </p>
+        <p><strong>Helpline:</strong> +91 93452 87965</p>
+        <p>
+          <strong>Office Hours:</strong> Monday – Saturday, 9:00 AM – 6:00 PM
+        </p>
+      </div>
+      <div class="contact-group">
+        <h3>JECRC University Contact</h3>
+        <p>
+          <strong>Address:</strong> Plot No. IS-2036 to 2039, Ramchandrapura
+          Industrial Area, Sitapura Extension, Jaipur, Rajasthan – 303905
+        </p>
+        <p>
+          <strong>Website:</strong>
+          <a href="https://jecrcuniversity.edu.in" target="_blank"
+            >www.jecrcuniversity.edu.in</a
+          >
+        </p>
+        <p><strong>Email:</strong> info@jecrcuniversity.edu.in</p>
+        <p><strong>Phone:</strong> +91 141 656 5600</p>
+      </div>
+    </section>
+    <footer>
+      © 2025 Campus Complaint Tracker · Designed for JECRC University
+    </footer>
+  </body>
+</html>

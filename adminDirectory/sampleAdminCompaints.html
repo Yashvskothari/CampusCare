@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CampusCare – Admin Complaints</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+    body {
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Navbar */
+    header {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      color: #ffd369;
+      font-weight: 600;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+
+    .menu { list-style: none; display: flex; gap: 1.5rem; }
+    .menu a {
+      color: #ddd;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+    .menu a:hover, .menu a.active { color: #ffd369; }
+
+    /* Main Container */
+    .container {
+      flex: 1;
+      padding: 2.5rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      color: #ffd369;
+      margin-bottom: 1.5rem;
+      font-size: 1.7rem;
+      text-align: center;
+    }
+
+    .complaint-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      animation: fadeIn 0.8s ease-in;
+    }
+
+    .complaint-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 1.8rem;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .complaint-card:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 0 30px rgba(255, 211, 105, 0.25);
+    }
+
+    .complaint-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .complaint-id {
+      font-weight: 600;
+      color: #ffd369;
+    }
+
+    .student-id {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    .complaint-details {
+      font-size: 0.95rem;
+      color: #eee;
+      line-height: 1.5;
+    }
+
+    .complaint-details strong {
+      color: #ffd369;
+      font-weight: 500;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      background: rgba(255, 255, 255, 0.05);
+      color: #ccc;
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    footer a {
+      color: #ffd369;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .container { padding: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <a href="../sampleIndex.html" class="brand">CampusCare</a>
+      <ul class="menu">
+        <li><a href="./sampleAdminDashboard.html">Dashboard</a></li>
+        <li><a href="#" class="active">Complaints</a></li>
+        <li><a href="./sampleAnalytics.html">Analytics</a></li>
+        <li><a href="./sampleUser.html">Users</a></li>
+        <li><a href="./sampleFeedback.html">Feedbacks</a></li>
+        <li><a href="./sampleSetting.html">Settings</a></li>
+        <li><a href="./sampleAdminLogin.html" class="logout">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h2>Staff-Related Complaints & Negative Feedbacks</h2>
+
+    <div class="complaint-grid">
+
+      <div class="complaint-card">
+        <div class="complaint-header">
+          <span class="complaint-id">#CMP-2101</span>
+          <span class="student-id">Student ID: STU1024</span>
+        </div>
+        <div class="complaint-details">
+          <p><strong>Category:</strong> Electrical Issue</p>
+          <p><strong>Location:</strong> Block A - Classroom 302</p>
+          <p><strong>Assigned Staff:</strong> R. Singh</p>
+          <p><strong>Problem:</strong> Lights flickering continuously during class hours.</p>
+          <p><strong>Feedback:</strong> Issue not fixed even after 3 days. Students had to shift to another classroom.</p>
+        </div>
+      </div>
+
+      <div class="complaint-card">
+        <div class="complaint-header">
+          <span class="complaint-id">#CMP-2102</span>
+          <span class="student-id">Student ID: STU1067</span>
+        </div>
+        <div class="complaint-details">
+          <p><strong>Category:</strong> Plumbing</p>
+          <p><strong>Location:</strong> Hostel C - Bathroom 2</p>
+          <p><strong>Assigned Staff:</strong> H. Kumar</p>
+          <p><strong>Problem:</strong> Broken tap causing water leakage all day.</p>
+          <p><strong>Feedback:</strong> Complaint raised twice but no action taken for 4 days.</p>
+        </div>
+      </div>
+
+      <div class="complaint-card">
+        <div class="complaint-header">
+          <span class="complaint-id">#CMP-2103</span>
+          <span class="student-id">Student ID: STU1105</span>
+        </div>
+        <div class="complaint-details">
+          <p><strong>Category:</strong> Cleaning</p>
+          <p><strong>Location:</strong> Canteen Area</p>
+          <p><strong>Assigned Staff:</strong> M. Sharma</p>
+          <p><strong>Problem:</strong> Trash bins overflowing and foul smell for two consecutive days.</p>
+          <p><strong>Feedback:</strong> No cleaning staff showed up despite multiple reminders.</p>
+        </div>
+      </div>
+
+      <div class="complaint-card">
+        <div class="complaint-header">
+          <span class="complaint-id">#CMP-2104</span>
+          <span class="student-id">Student ID: STU1111</span>
+        </div>
+        <div class="complaint-details">
+          <p><strong>Category:</strong> Air Conditioning</p>
+          <p><strong>Location:</strong> Library 1st Floor</p>
+          <p><strong>Assigned Staff:</strong> A. Patel</p>
+          <p><strong>Problem:</strong> AC unit malfunctioning, not cooling properly.</p>
+          <p><strong>Feedback:</strong> Repaired once but issue reappeared next day. No follow-up done.</p>
+        </div>
+      </div>
+
+      <div class="complaint-card">
+        <div class="complaint-header">
+          <span class="complaint-id">#CMP-2105</span>
+          <span class="student-id">Student ID: STU1153</span>
+        </div>
+        <div class="complaint-details">
+          <p><strong>Category:</strong> Carpentry</p>
+          <p><strong>Location:</strong> Computer Lab - Block B</p>
+          <p><strong>Assigned Staff:</strong> L. Mehta</p>
+          <p><strong>Problem:</strong> Broken chair legs causing safety concern.</p>
+          <p><strong>Feedback:</strong> Marked as resolved, but no staff arrived to repair. Reported again.</p>
+        </div>
+      </div>
+
+      <div class="complaint-card">
+        <div class="complaint-header">
+          <span class="complaint-id">#CMP-2106</span>
+          <span class="student-id">Student ID: STU1198</span>
+        </div>
+        <div class="complaint-details">
+          <p><strong>Category:</strong> Lighting</p>
+          <p><strong>Location:</strong> Auditorium Backstage</p>
+          <p><strong>Assigned Staff:</strong> V. Chatterjee</p>
+          <p><strong>Problem:</strong> Backstage lights not functioning before annual event.</p>
+          <p><strong>Feedback:</strong> Staff informed but did not visit until after the event was over.</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    © 2025 · <a href="../sampleIndex.html">CampusCare</a>
+  </footer>
+</body>
+</html>

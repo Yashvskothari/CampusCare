@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CampusCare – Welcome</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #f1f1f1;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    main {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Logo Styling */
+    .logo-container {
+      text-align: center;
+      margin-bottom: 2rem;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .logo-container img {
+      width: 120px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 18px rgba(56, 189, 248, 0.3);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .logo-container img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 25px rgba(129, 140, 248, 0.4);
+    }
+
+    /* Welcome Section */
+    .welcome-section {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .welcome-section h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+    }
+
+    .welcome-section p {
+      font-size: 1.25rem;
+      color: #cbd5e1;
+      max-width: 600px;
+      line-height: 1.7;
+    }
+
+    .scroll-down {
+      position: absolute;
+      bottom: 40px;
+      font-size: 1.1rem;
+      color: #94a3b8;
+      animation: bounce 2s infinite;
+      cursor: pointer;
+    }
+
+    /* Role Section */
+    .role-section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end; /* Moves the box near footer */
+      align-items: center;
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      padding-bottom: 100px; /* Adds space above footer */
+      position: relative;
+    }
+
+    .role-section h2 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      text-align: center;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .role-panel {
+      background: rgba(15, 23, 42, 0.8);
+      border: none; /* Removes solid border */
+      box-shadow: 0 0 40px rgba(56, 189, 248, 0.15);
+      border-radius: 1.5rem;
+      padding: 3rem 4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+      width: min(90%, 700px);
+      position: relative;
+      overflow: hidden;
+      animation: slideUp 1.2s ease-out;
+    }
+
+    /* Fading bottom effect */
+    .role-panel::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50px;
+      background: linear-gradient(to bottom, rgba(15,23,42,0) 0%, rgba(15,23,42,0.8) 100%);
+      pointer-events: none;
+    }
+
+    .role-buttons {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+
+    .role-btn {
+      background: linear-gradient(90deg, #38bdf8, #818cf8);
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 600;
+      padding: 1rem 2.5rem;
+      border-radius: 1rem;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .role-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(56, 189, 248, 0.3);
+    }
+
+    /* Extra Buttons */
+    .extra-buttons {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .extra-btn {
+      background: transparent;
+      border: 2px solid #38bdf8;
+      color: #38bdf8;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.8rem 2rem;
+      border-radius: 0.8rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .extra-btn:hover {
+      background: linear-gradient(90deg, #38bdf8, #818cf8);
+      color: #fff;
+      transform: translateY(-4px);
+      box-shadow: 0 8px 15px rgba(56, 189, 248, 0.25);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      background: rgba(15, 23, 42, 0.8);
+      color: #94a3b8;
+      width: 100%;
+      position: relative;
+    }
+
+    a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes slideUp {
+      0% {
+        opacity: 0;
+        transform: translateY(80px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <!-- Welcome Section -->
+    <section class="welcome-section" id="welcome">
+      <div class="logo-container">
+        <img src="logo.png" alt="CampusCare Logo" style="height: 200px; width: 250px;">
+      </div>
+      <h1>Welcome to CampusCare</h1>
+      <p>Your smart, secure, and student-friendly platform for managing campus activities and academics effortlessly.</p>
+      <div class="scroll-down" onclick="scrollToRole()">↓ Scroll to continue</div>
+    </section>
+
+    <!-- Role Selection Section -->
+    <section class="role-section" id="roles">
+      <h2>Select Your Role</h2>
+      <div class="role-panel">
+        <div class="role-buttons">
+          <button class="role-btn" onclick="location.href='studentDirectory/sampleStudentLogin.html'">I am a Student</button>
+          <button class="role-btn" onclick="location.href='adminDirectory/sampleAdminLogin.html'">I am an Admin</button>
+        </div>
+
+        <div class="extra-buttons">
+          <button class="extra-btn" onclick="location.href='sampleAbout.html'">About Us</button>
+          <button class="extra-btn" onclick="location.href='sampleContact.html'">Contact Us</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 CampusCare · Built at <a href="https://jecrcuniversity.edu.in/" target="_blank">JECRC University</a>
+  </footer>
+
+  <script>
+    function scrollToRole() {
+      document.getElementById("roles").scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
+</body>
+</html>

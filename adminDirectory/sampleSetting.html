@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusCare – Admin Settings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #f5f5f5;
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    header, footer {
+      flex-shrink: 0;
+    }
+
+    main {
+      flex-grow: 1;
+      padding: 40px 10%;
+    }
+
+    /* ------------------ NAVBAR ------------------ */
+    .navbar {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 50px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      flex-wrap: wrap;
+    }
+
+    .navbar .brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #ffd369;
+      font-weight: 600;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+
+    .navbar .brand img {
+      width: 34px;
+      height: 34px;
+      margin-right: 10px;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar ul li a {
+      color: #eee;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+      padding: 6px 14px;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    .navbar ul li a:hover,
+    .navbar ul li a.active {
+      background: rgba(255, 211, 105, 0.2);
+      color: #ffd369;
+    }
+
+    .logout-btn {
+      background: linear-gradient(90deg, #ff7b7b, #ff3b3b);
+      color: #fff;
+      font-weight: 600;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+      white-space: nowrap;
+    }
+
+    .logout-btn:hover {
+      background: linear-gradient(90deg, #ff4d4d, #ff0000);
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+      transform: translateY(-2px);
+    }
+
+    /* ------------------ SETTINGS CONTAINER ------------------ */
+    .settings-container {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 45px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.35);
+      backdrop-filter: blur(10px);
+      max-width: 900px;
+      margin: 60px auto 40px auto;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 600;
+      color: #ffd369;
+      letter-spacing: 1px;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px 40px;
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+      font-size: 0.95rem;
+      color: #ccc;
+    }
+
+    input, textarea, select {
+      margin-top: 8px;
+      padding: 12px 14px;
+      border: none;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      outline: none;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 500;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      background: rgba(255,255,255,0.22);
+      box-shadow: 0 0 10px rgba(255, 211, 105, 0.4);
+    }
+
+    select {
+      color: #000;
+      font-weight: 600;
+      background: rgba(255,255,255,0.9);
+      border: none;
+      appearance: none;
+    }
+
+    select option {
+      background: #fff;
+      color: #222;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+    }
+
+    textarea {
+      resize: none;
+      height: 80px;
+    }
+
+    .profile-section {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 30px;
+      margin-bottom: 25px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 25px;
+    }
+
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #ffd369;
+      background: rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .profile-pic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .upload-btn {
+      background: linear-gradient(90deg, #ffd369, #ffb347);
+      color: #000;
+      font-weight: 600;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .upload-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 12px rgba(255, 211, 105, 0.6);
+    }
+
+    .save-btn {
+      grid-column: 1 / -1;
+      background: linear-gradient(90deg, #ffd369, #ffb347);
+      color: #000;
+      font-weight: 700;
+      font-size: 1.05rem;
+      border: none;
+      border-radius: 10px;
+      padding: 18px;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .save-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 18px rgba(255,211,105,0.7);
+    }
+    .nav-btns{
+      margin : 100px;
+    }
+
+    footer {
+      text-align: center;
+      color: #ccc;
+      font-size: 0.9rem;
+      padding: 15px 0;
+    }
+
+    footer a {
+      color: #ffd369;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+
+    @media (max-width: 900px) {
+      .navbar {
+        padding: 14px 30px;
+      }
+      .navbar ul {
+        gap: 15px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 20px;
+      }
+      .navbar ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      form {
+        grid-template-columns: 1fr;
+      }
+      .settings-container {
+        padding: 25px;
+      }
+    }
+  </style>
+</head>
+
+<body class="admin-dark-bg role-admin">
+  <!-- NAVBAR -->
+  <header>
+    <nav class="navbar">
+      <a href="../sampleIndex.html" class="brand">
+        <span>CampusCare</span>
+      </a>
+      <ul>
+        <li ><a href="./sampleAdminDashboard.html">Dashboard</a></li>
+        <li ><a href="./sampleAnalytics.html">Analytics</a></li>
+        <li ><a href="./sampleUser.html">Users</a></li>
+        <li ><button class="logout-btn" onclick="window.location.href='./sampleIndex.html'" , style = "margin-right: 70px;">Logout</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- MAIN SETTINGS -->
+  <main>
+    <section class="settings-container">
+      <h2>Admin Settings</h2>
+      <form action="#" method="post" enctype="multipart/form-data">
+        <div class="profile-section">
+          <div class="profile-pic" id="profilePicPreview">
+            <img src="user.png" alt="Profile Picture" id="profileImage" style = "width: 110px; height: 110px;">
+          </div>
+          <div>
+            <input type="file" id="profilePicUpload" accept="image/*" style="display:none;">
+            <button type="button" class="upload-btn" onclick="document.getElementById('profilePicUpload').click()">Change Picture</button>
+          </div>
+        </div>
+
+        <label>Full Name
+          <input type="text" name="fullname" placeholder="Enter full name" required>
+        </label>
+
+        <label>Email Address
+          <input type="email" name="email" placeholder="admin@jecrc.edu.in" required>
+        </label>
+
+        <label>Mobile Number
+          <input type="tel" name="phone" placeholder="+91 9876543210" required>
+        </label>
+
+        <label>Department
+          <select name="department" required>
+            <option value="">Select Department</option>
+            <option value="CSE">Arrangements</option>
+            <option value="ECE">Electrical</option>
+            <option value="ME">Plumbing</option>
+            <option value="CE">Cleaning</option>
+            <option value="EE">Other</option>
+          </select>
+        </label>
+
+        <label>Staff Room / Cabin No.
+          <input type="text" name="room" placeholder="Room 212, Block B">
+        </label>
+
+        <label>Address
+          <textarea name="address" placeholder="JECRC University, Sitapura, Jaipur, Rajasthan"></textarea>
+        </label>
+
+        <label>Emergency Contact
+          <input type="tel" name="emergency" placeholder="+91 9988776655">
+        </label>
+
+        <button type="submit" class="save-btn">Save Changes</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>© 2025 · <a href="../sampleIndex.html">CampusCare</a></div>
+  </footer>
+
+  <script>
+    const uploadInput = document.getElementById('profilePicUpload');
+    const preview = document.getElementById('profileImage');
+
+    uploadInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          preview.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
+</body>
+</html>
+

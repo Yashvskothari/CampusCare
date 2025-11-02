@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CampusCare – Admin Analytics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      color: #ffd369;
+      font-weight: 600;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+
+    .menu {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .menu a {
+      color: #ddd;
+      text-decoration: none;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+
+    .menu a.active,
+    .menu a:hover {
+      color: #ffd369;
+    }
+
+    .container {
+      flex: 1;
+      padding: 3rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      color: #ffd369;
+      margin-bottom: 2rem;
+      font-size: 1.8rem;
+      font-weight: 600;
+      text-align: center;
+      text-shadow: 0 0 10px rgba(255, 211, 105, 0.5);
+      letter-spacing: 0.5px;
+    }
+
+    .analytics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      justify-content: center;
+    }
+
+    .analytic-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border-radius: 18px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 18px rgba(0, 0, 0, 0.25);
+      animation: fadeIn 1s ease;
+    }
+
+    .analytic-card:hover {
+      transform: translateY(-6px);
+      background: rgba(255, 255, 255, 0.18);
+      box-shadow: 0 0 25px rgba(255, 211, 105, 0.3);
+    }
+
+    .analytic-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1.2rem;
+      color: #ffd369;
+      text-shadow: 0 0 6px rgba(255, 211, 105, 0.4);
+    }
+
+    /* PIE CHART FIX */
+    .chart {
+      width: 180px;
+      height: 180px;
+      margin: 0 auto;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .chart svg {
+      width: 160px;
+      height: 160px;
+      transform: rotate(-90deg);
+    }
+
+    circle {
+      fill: none;
+      stroke-width: 12;
+      stroke-linecap: round;
+      cx: 80;
+      cy: 80;
+      r: 70;
+      transition: stroke-dashoffset 1s ease;
+    }
+
+    .chart .bg {
+      stroke: rgba(255, 255, 255, 0.15);
+    }
+
+    .chart .progress {
+      stroke: #ffd369;
+      stroke-dasharray: 440;
+      stroke-dashoffset: calc(440 - (440 * var(--value)) / 100);
+    }
+
+    .chart span {
+      position: absolute;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .chart-label {
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: #ccc;
+      letter-spacing: 0.4px;
+    }
+
+    /* BARS */
+    .bar-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    .bar-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6rem;
+      font-size: 0.95rem;
+    }
+
+    .bar-row span:first-child {
+      flex: 1;
+      text-align: left;
+    }
+
+    .bar-row span:nth-child(2) {
+      width: 3rem;
+      text-align: right;
+    }
+
+    .bar {
+      flex: 1;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: #ffd369;
+      border-radius: 5px;
+      width: var(--width);
+      transition: width 0.8s ease;
+    }
+
+    /* STUDENT SATISFACTION GRAPH */
+    .satisfaction-graph {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .graph-bar {
+      width: 100%;
+      height: 10px;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.15);
+      overflow: hidden;
+    }
+
+    .graph-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #ffd369, #ffb703);
+      border-radius: 5px;
+      width: 0;
+      animation: growBar 1.5s forwards;
+    }
+
+    @keyframes growBar {
+      from { width: 0; }
+      to { width: 85%; }
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      background: rgba(255, 255, 255, 0.05);
+      color: #ccc;
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    footer a {
+      color: #ffd369;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 992px) {
+      .analytics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .analytics-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <a href="../sampleIndex.html" class="brand">CampusCare</a>
+      <ul class="menu">
+        <li><a href="sampleAdminDashboard.html">Home</a></li>
+        <li><a href="sampleAdminCompaints.html">Complaints</a></li>
+        <li><a href="./sampleUser.html">Users</a></li>
+        <li><a href="./sampleFeedback.html">Feedbacks</a></li>
+        <li><a href="./sampleSetting.html">Settings</a></li>
+        <li><a href="./sampleAdminLogin.html" class="logout">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h2>CampusCare Analytics Dashboard</h2>
+    <div class="analytics-grid">
+
+      <!-- Resolution Rate -->
+      <article class="analytic-card">
+        <h3>Resolution Rate</h3>
+        <div class="chart" style="--value:86">
+          <svg>
+            <circle class="bg"></circle>
+            <circle class="progress"></circle>
+          </svg>
+          <span>86%</span>
+        </div>
+        <div class="chart-label">Overall Resolutions</div>
+      </article>
+
+      <!-- On-Time Completion -->
+      <article class="analytic-card">
+        <h3>On-Time Completion</h3>
+        <div class="chart" style="--value:72">
+          <svg>
+            <circle class="bg"></circle>
+            <circle class="progress"></circle>
+          </svg>
+          <span>72%</span>
+        </div>
+        <div class="chart-label">Tasks Resolved on Schedule</div>
+      </article>
+
+      <!-- First-Contact Resolution -->
+      <article class="analytic-card">
+        <h3>First-Contact Resolution</h3>
+        <div class="chart" style="--value:64">
+          <svg>
+            <circle class="bg"></circle>
+            <circle class="progress"></circle>
+          </svg>
+          <span>64%</span>
+        </div>
+        <div class="chart-label">Issues Solved Immediately</div>
+      </article>
+
+      <!-- Active vs Resolved -->
+      <article class="analytic-card">
+        <h3>Active vs Resolved Complaints</h3>
+        <div class="bar-section">
+          <div class="bar-row">
+            <span>Active</span>
+            <div class="bar"><div class="bar-fill" style="--width:34%;"></div></div>
+            <span>34%</span>
+          </div>
+          <div class="bar-row">
+            <span>Resolved</span>
+            <div class="bar"><div class="bar-fill" style="--width:66%;"></div></div>
+            <span>66%</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Category Distribution -->
+      <article class="analytic-card">
+        <h3>Complaints by Category</h3>
+        <div class="bar-section">
+          <div class="bar-row"><span>Electrical</span><div class="bar"><div class="bar-fill" style="--width:40%;"></div></div><span>40%</span></div>
+          <div class="bar-row"><span>Plumbing</span><div class="bar"><div class="bar-fill" style="--width:28%;"></div></div><span>28%</span></div>
+          <div class="bar-row"><span>Cleaning</span><div class="bar"><div class="bar-fill" style="--width:18%;"></div></div><span>18%</span></div>
+          <div class="bar-row"><span>Others</span><div class="bar"><div class="bar-fill" style="--width:14%;"></div></div><span>14%</span></div>
+        </div>
+      </article>
+
+      <!-- Student Satisfaction -->
+      <article class="analytic-card">
+        <h3>Student Satisfaction</h3>
+        <div class="satisfaction-graph">
+          <div class="graph-bar">
+            <div class="graph-fill"></div>
+          </div>
+          <div style="font-size: 1rem; color: #ccc;">85% Satisfaction Rate</div>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <footer>
+    © 2025 · <a href="../sampleIndex.html">CampusCare</a>
+  </footer>
+</body>
+</html>
+

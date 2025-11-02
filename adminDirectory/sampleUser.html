@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CampusCare – Users</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      color: #ffd369;
+      font-weight: 600;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+
+    .menu {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .menu a {
+      color: #ddd;
+      text-decoration: none;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+
+    .menu a.active,
+    .menu a:hover {
+      color: #ffd369;
+    }
+
+    .container {
+      flex: 1;
+      padding: 2.5rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      color: #ffd369;
+      margin-bottom: 2rem;
+      font-size: 1.8rem;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .user-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .user-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border-radius: 18px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 18px rgba(0, 0, 0, 0.25);
+      cursor: pointer;
+    }
+
+    .user-card:hover {
+      transform: translateY(-6px);
+      background: rgba(255, 255, 255, 0.18);
+      box-shadow: 0 0 25px rgba(255, 211, 105, 0.3);
+    }
+
+    .user-logo {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 1rem;
+      display: block;
+      background-color: rgba(255, 211, 105, 0.1);
+      border-radius: 50%;
+      padding: 15px;
+    }
+
+    .user-card h3 {
+      font-size: 1.2rem;
+      color: #fff;
+      margin-bottom: 0.3rem;
+    }
+
+    .user-card p {
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+
+    .user-id {
+      color: #ffd369;
+      font-weight: 500;
+      margin-top: 0.6rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      background: rgba(255, 255, 255, 0.05);
+      color: #ccc;
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    footer a {
+      color: #ffd369;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+
+    @media (max-width: 992px) {
+      .user-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .user-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <a href="../sampleIndex.html" class="brand">CampusCare</a>
+      <ul class="menu">
+        <li><a href="sampleAdminDashboard.html">Home</a></li>
+        <li><a href="sampleAdminCompaints.html">Complaints</a></li>
+        <li><a href="./sampleFeedback.html">Feedbacks</a></li>
+        <li><a href="./sampleSetting.html">Settings</a></li>
+        <li><a href="./sampleAdminLogin.html" class="logout">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h2>Admin Profiles</h2>
+    <div class="user-grid">
+      <!-- Repeat user cards -->
+      <div class="user-card">
+        <img src="user.png" alt="User Logo" class="user-logo">
+        <h3>Rahul Sharma</h3>
+        <p>Facilities Management</p>
+        <div class="user-id">ID: CC-ADM001</div>
+      </div>
+      <div class="user-card">
+        <img src="user.png" alt="User Logo" class="user-logo">
+        <h3>Neha Gupta</h3>
+        <p>Complaint Coordinator</p>
+        <div class="user-id">ID: CC-ADM002</div>
+      </div>
+      <div class="user-card">
+        <img src="user.png" alt="User Logo" class="user-logo">
+        <h3>Ravi Singh</h3>
+        <p>System Admin</p>
+        <div class="user-id">ID: CC-ADM003</div>
+      </div>
+      <div class="user-card">
+        <img src="user.png" alt="User Logo" class="user-logo">
+        <h3>Anjali Mehta</h3>
+        <p>Electrical Department</p>
+        <div class="user-id">ID: CC-ADM004</div>
+      </div>
+      <div class="user-card">
+        <img src="user.png" alt="User Logo" class="user-logo">
+        <h3>Mohit Patel</h3>
+        <p>Maintenance Lead</p>
+        <div class="user-id">ID: CC-ADM005</div>
+      </div>
+      <div class="user-card">
+        <img src="user.png" alt="User Logo" class="user-logo">
+        <h3>Simran Kaur</h3>
+        <p>Network Manager</p>
+        <div class="user-id">ID: CC-ADM006</div>
+      </div>
+      <div class="user-card">
+        <img src="user.png" alt="User Logo" class="user-logo">
+        <h3>Arjun Verma</h3>
+        <p>Security Oversight</p>
+        <div class="user-id">ID: CC-ADM007</div>
+      </div>
+      <div class="user-card">
+        <img src="user.png" alt="User Logo" class="user-logo">
+        <h3>Pooja Nair</h3>
+        <p>Student Affairs</p>
+        <div class="user-id">ID: CC-ADM008</div>
+      </div>
+      <div class="user-card">
+        <img src="user.png" alt="User Logo" class="user-logo">
+        <h3>Rohit Yadav</h3>
+        <p>Technical Support</p>
+        <div class="user-id">ID: CC-ADM009</div>
+      </div>
+      <div class="user-card">
+        <img src="user.png" alt="User Logo" class="user-logo">
+        <h3>Sneha Joshi</h3>
+        <p>Hostel Admin</p>
+        <div class="user-id">ID: CC-ADM010</div>
+      </div>
+      <div class="user-card">
+        <img src="user.png" alt="User Logo" class="user-logo">
+        <h3>Aditya Kumar</h3>
+        <p>Transport Manager</p>
+        <div class="user-id">ID: CC-ADM011</div>
+      </div>
+      <div class="user-card">
+        <img src="user.png" alt="User Logo" class="user-logo">
+        <h3>Kritika Malhotra</h3>
+        <p>IT Support</p>
+        <div class="user-id">ID: CC-ADM012</div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 · <a href="../sampleIndex.html">CampusCare</a>
+  </footer>
+</body>
+</html>
+
